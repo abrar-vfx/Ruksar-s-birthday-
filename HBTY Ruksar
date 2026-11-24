@@ -1,0 +1,199 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sis 🎂</title><style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffb6d9, #d9c2ff, #b9f3ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.screen {
+  width: 100%;
+  padding: 25px;
+  display: none;
+}
+
+#first {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 42px;
+  color: white;
+  text-shadow: 0 4px 15px rgba(0,0,0,.2);
+  animation: pulse 2s infinite;
+}
+
+.tap {
+  margin-top: 25px;
+  color: white;
+  font-size: 18px;
+  animation: fade 1.5s infinite;
+}
+
+#second {
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 35px;
+}
+
+.gifts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gift {
+  background: rgba(255,255,255,.85);
+  border-radius: 25px;
+  padding: 25px 15px;
+  width: 140px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  transition: transform .3s;
+}
+
+.gift:active {
+  transform: scale(.9);
+}
+
+.gift-icon {
+  font-size: 65px;
+}
+
+.gift-label {
+  margin-top: 12px;
+  color: #ff4b91;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#third {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+#giftReveal {
+  font-size: 100px;
+  animation: bounce 1.5s infinite;
+}
+
+.message {
+  background: rgba(255,255,255,.9);
+  padding: 25px;
+  border-radius: 25px;
+  margin-top: 25px;
+  color: #b33974;
+  font-size: 19px;
+  line-height: 1.7;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.confetti {
+  position: fixed;
+  top: -15px;
+  width: 10px;
+  height: 14px;
+  animation: fall 4s linear infinite;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.05); }
+}
+
+@keyframes fade {
+  50% { opacity: .5; }
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+</style></head><body><div class="screen" id="first">
+  <h1 class="title">Happy Birthday Sis 🎂💖</h1>
+  <p class="tap">Tap anywhere to continue ✨</p>
+</div><div class="screen" id="second">
+  <h1 class="heading">Choose your gift 🎁</h1>  <div class="gifts">
+    <div class="gift" onclick="openGift('🎂')">
+      <div class="gift-icon">🎂</div>
+      <div class="gift-label">Cake Box</div>
+    </div><div class="gift" onclick="openGift('🧸')">
+  <div class="gift-icon">🎁</div>
+  <div class="gift-label">Doll Box</div>
+</div>
+
+  </div>
+</div><div class="screen" id="third">
+  <div id="giftReveal">🎂</div>  <div class="message">
+    Happy birthday! Wishing a day filled with good vibes, great food, plenty of laughs, and all the things being looked forward to most. May the year ahead bring awesome adventures, big wins, and everything hoped for. Have an unforgettable birthday today—enjoy every bit of the celebration and make it a great start to a fantastic year!
+  </div>
+</div><script>
+const first = document.getElementById("first");
+const second = document.getElementById("second");
+const third = document.getElementById("third");
+
+first.style.display = "flex";
+
+document.body.addEventListener("click", function(e) {
+  if (first.style.display === "flex") {
+    first.style.display = "none";
+    second.style.display = "flex";
+  }
+});
+
+function openGift(symbol) {
+  second.style.display = "none";
+  third.style.display = "flex";
+
+  document.getElementById("giftReveal").innerHTML = symbol;
+
+  for (let i = 0; i < 120; i++) {
+    let c = document.createElement("div");
+    c.className = "confetti";
+
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.backgroundColor =
+      `hsl(${Math.random() * 360},100%,60%)`;
+
+    c.style.animationDuration =
+      (Math.random() * 3 + 2) + "s";
+
+    c.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    document.body.appendChild(c);
+  }
+}
+</script></body>
+</html>
